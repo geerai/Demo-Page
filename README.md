@@ -16,24 +16,19 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000`.
 
-## Publish with GitHub Pages
+## Repository and GitHub Pages
 
-Create an empty GitHub repository, then run inside this directory:
-
-```bash
-git init
-git add .
-git commit -m "Add Qwen MIDI demo site"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-git push -u origin main
-```
-
-In the GitHub repository, open **Settings → Pages**, choose **Deploy from a
-branch**, select `main` and `/ (root)`, then save. The page will appear at:
+Repository:
 
 ```text
-https://YOUR_USERNAME.github.io/YOUR_REPOSITORY/
+https://github.com/geerai/Demo-Page
+```
+
+Once GitHub Pages is configured to deploy from `main` and `/ (root)`, the site
+is available at:
+
+```text
+https://geerai.github.io/Demo-Page/
 ```
 
 Playback uses the browser-side `html-midi-player` bundle from jsDelivr, so the
