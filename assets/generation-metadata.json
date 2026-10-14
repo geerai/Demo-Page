@@ -1,0 +1,15 @@
+{
+  "title": "POP909 Melody-Conditioned Piano Generation",
+  "model": "Qwen3-style decoder, function-preserving depth-expanded checkpoint before further 150M training",
+  "task": "Given melody to piano accompaniment",
+  "dataset": "POP909 test split",
+  "sample_count": 16,
+  "sampling": {
+    "temperature": 1.0,
+    "top_k": 20,
+    "top_p": 0.95,
+    "grammar_constrained": true
+  },
+  "context_length": 2048,
+  "notes": "Every sample reached the context safety ceiling. Full per-sample statistics are embedded in app.js and included in each source generation report."
+}
