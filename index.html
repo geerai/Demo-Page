@@ -6,7 +6,7 @@
   <meta name="description" content="POP909 key, chord, and melody-conditioned piano generation demos from a 152M-parameter Qwen3-style symbolic music model.">
   <title>Qwen MIDI — Key + Chord + Melody to Piano</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="styles.css?v=20261015-2">
+  <link rel="stylesheet" href="styles.css?v=20261015-3">
   <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
 </head>
 <body>
@@ -75,9 +75,40 @@
           <p class="eyebrow">PREVIOUS EXPERIMENT</p>
           <h2>Melody → piano archive</h2>
         </div>
-        <p class="section-copy">The earlier 16 melody-conditioned samples remain available for comparison. Each link opens the combined condition-and-generation MIDI.</p>
+        <p class="section-copy">Explore all 16 earlier melody-conditioned samples with playback, piano-roll visualization, token counts, and separate condition/generated MIDI views.</p>
       </div>
-      <div id="archive-links" class="archive-links" aria-label="Previous melody-conditioned generation files"></div>
+      <div id="previous-sample-tabs" class="sample-tabs" role="tablist" aria-label="Previous POP909 samples"></div>
+
+      <article class="demo-panel previous-demo-panel">
+        <div class="demo-header">
+          <div>
+            <p class="sample-kicker" id="previous-sample-kicker">POP909 · PREVIOUS SAMPLE 01</p>
+            <h3 id="previous-sample-title">Song 664 · Window 001</h3>
+          </div>
+          <a id="previous-download-current" class="download-button" href="#" download>↓ Download MIDI</a>
+        </div>
+
+        <div id="previous-stats" class="stats" aria-label="Previous generation metadata"></div>
+
+        <div class="mode-tabs" role="tablist" aria-label="Previous MIDI track view">
+          <button type="button" class="previous-mode-tab mode-tab" data-previous-mode="condition" role="tab">Given melody</button>
+          <button type="button" class="previous-mode-tab mode-tab" data-previous-mode="generated" role="tab">Generated piano</button>
+          <button type="button" class="previous-mode-tab mode-tab" data-previous-mode="combined" role="tab">Melody + generated</button>
+        </div>
+
+        <div class="player-card">
+          <div class="player-labels">
+            <span id="previous-player-title">Melody + generated piano</span>
+            <span class="format-badge">MIDI</span>
+          </div>
+          <midi-player id="previous-midi-player" sound-font visualizer="#previous-midi-visualizer"></midi-player>
+          <div class="visualizer-shell">
+            <midi-visualizer id="previous-midi-visualizer" type="piano-roll"></midi-visualizer>
+          </div>
+        </div>
+
+        <p class="generation-note" id="previous-generation-note"></p>
+      </article>
       <p class="archive-meta"><a href="assets/generation-metadata.json">View previous experiment metadata</a></p>
     </section>
 
@@ -126,6 +157,6 @@
   <footer>
     <p>Research demo · MIDI playback powered by <a href="https://github.com/cifkao/html-midi-player">html-midi-player</a>.</p>
   </footer>
-  <script src="app.js?v=20261015-2"></script>
+  <script src="app.js?v=20261015-3"></script>
 </body>
 </html>

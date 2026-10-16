@@ -63,9 +63,7 @@ midi-visualizer { display: block; width: 100%; min-width: 780px; height: 290px; 
 .generation-note a, .archive-meta a { color: var(--accent); font-weight: 700; }
 
 .archive { padding-top: 34px; }
-.archive-links { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
-.archive-links a { border: 1px solid var(--line); border-radius: 11px; padding: 11px 8px; text-align: center; text-decoration: none; color: #565a65; background: white; font-size: .82rem; font-weight: 700; transition: .2s ease; }
-.archive-links a:hover { transform: translateY(-1px); border-color: var(--accent); color: var(--accent); }
+.previous-demo-panel { background: #f7f5fb; }
 .archive-meta { margin: 14px 0 0; color: var(--muted); font-size: .82rem; }
 
 .method { margin-top: 30px; background: var(--wash); border-radius: 28px; }
@@ -91,5 +89,4 @@ footer { margin-top: 20px; padding: 32px 24px; text-align: center; color: var(--
   .demo-panel { padding: 16px; }
   .mode-tabs { overflow-x: auto; }
   .mode-tab { white-space: nowrap; }
-  .archive-links { grid-template-columns: repeat(4, 1fr); }
 }
