@@ -1,0 +1,30 @@
+{
+  "sample_id": "pop909-cl::300::window-002",
+  "method": "remi_temperature_topk_sampling",
+  "seed": 20261021,
+  "temperature": 1.2,
+  "top_k": 5,
+  "top_p": 1.0,
+  "prompt_tokens": 855,
+  "generated_tokens": 765,
+  "context_length": 2048,
+  "expected_bars": 21,
+  "generated_bars_detected": 17,
+  "reference_bars_detected": 21,
+  "generated_note_count": 220,
+  "reference_note_count": 349,
+  "melody_note_count": 163,
+  "grammar_valid": false,
+  "grammar_errors": [
+    "orphan/truncated position at token 2",
+    "orphan/truncated position at token 5",
+    "orphan/truncated position at token 8",
+    "orphan/truncated position at token 11",
+    "orphan/truncated position at token 14",
+    "orphan/truncated position at token 17",
+    "orphan/truncated position at token 20",
+    "expected target BAR token, found <TEMPO_128>"
+  ],
+  "reference_parse_errors": [],
+  "stopping_reason": "expected_bar_count"
+}

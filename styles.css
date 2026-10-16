@@ -48,6 +48,8 @@ h3 { margin: 0; font-size: 1.22rem; }
 .stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
 .stat { border: 1px solid #d9dde6; border-radius: 999px; padding: 6px 11px; background: rgba(255,255,255,.72); color: #555967; font-size: .78rem; }
 .stat b { margin-right: 5px; color: #71788c; font-size: .64rem; letter-spacing: .08em; }
+.stat.warning { border-color: #e3b9a7; color: #914a31; background: #fff4ef; }
+.stat.warning b { color: #a35438; }
 .mode-tabs { display: flex; gap: 8px; margin: 0 0 12px; }
 .player-card { overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: white; box-shadow: 0 12px 32px rgba(20,24,40,.06); }
 .player-labels { display: flex; justify-content: space-between; padding: 15px 17px 0; font-weight: 750; }
@@ -57,6 +59,14 @@ midi-player::part(control-panel) { border-radius: 10px; background: #f4f5f8; }
 .visualizer-shell { overflow-x: auto; min-height: 290px; border-top: 1px solid var(--line); background: #fafbfc; }
 midi-visualizer { display: block; width: 100%; min-width: 780px; height: 290px; }
 .generation-note { margin: 14px 4px 0; color: var(--muted); font-size: .8rem; }
+.generation-note strong { color: #914a31; }
+.generation-note a, .archive-meta a { color: var(--accent); font-weight: 700; }
+
+.archive { padding-top: 34px; }
+.archive-links { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+.archive-links a { border: 1px solid var(--line); border-radius: 11px; padding: 11px 8px; text-align: center; text-decoration: none; color: #565a65; background: white; font-size: .82rem; font-weight: 700; transition: .2s ease; }
+.archive-links a:hover { transform: translateY(-1px); border-color: var(--accent); color: var(--accent); }
+.archive-meta { margin: 14px 0 0; color: var(--muted); font-size: .82rem; }
 
 .method { margin-top: 30px; background: var(--wash); border-radius: 28px; }
 .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
@@ -81,4 +91,5 @@ footer { margin-top: 20px; padding: 32px 24px; text-align: center; color: var(--
   .demo-panel { padding: 16px; }
   .mode-tabs { overflow-x: auto; }
   .mode-tab { white-space: nowrap; }
+  .archive-links { grid-template-columns: repeat(4, 1fr); }
 }

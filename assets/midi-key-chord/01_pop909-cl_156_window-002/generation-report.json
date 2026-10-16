@@ -1,0 +1,23 @@
+{
+  "sample_id": "pop909-cl::156::window-002",
+  "method": "remi_temperature_topk_sampling",
+  "seed": 20261016,
+  "temperature": 1.2,
+  "top_k": 5,
+  "top_p": 1.0,
+  "prompt_tokens": 835,
+  "generated_tokens": 1213,
+  "context_length": 2048,
+  "expected_bars": 28,
+  "generated_bars_detected": 21,
+  "reference_bars_detected": 28,
+  "generated_note_count": 373,
+  "reference_note_count": 355,
+  "melody_note_count": 127,
+  "grammar_valid": false,
+  "grammar_errors": [
+    "target bar sequence is not relative/contiguous: 2"
+  ],
+  "reference_parse_errors": [],
+  "stopping_reason": "context_limit"
+}

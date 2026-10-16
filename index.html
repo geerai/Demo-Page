@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="POP909 melody-conditioned piano generation demos from a depth-expanded Qwen3-style music model.">
-  <title>Qwen MIDI — Melody-Conditioned Piano Generation</title>
+  <meta name="description" content="POP909 key, chord, and melody-conditioned piano generation demos from a 152M-parameter Qwen3-style symbolic music model.">
+  <title>Qwen MIDI — Key + Chord + Melody to Piano</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
@@ -13,12 +13,12 @@
   <header class="hero">
     <div class="hero-inner">
       <p class="eyebrow">SYMBOLIC MUSIC GENERATION</p>
-      <h1>Melody-Conditioned<br>Piano Generation</h1>
-      <p class="subtitle">A Qwen3-style decoder trained on POP909 to turn a given melody into a piano accompaniment.</p>
+      <h1>Key + Chord + Melody<br>→ Piano Generation</h1>
+      <p class="subtitle">A 152M-parameter Qwen3-style symbolic music model trained on POP909 and POP909-CL to generate piano from a complete harmonic and melodic condition.</p>
       <nav class="hero-actions" aria-label="Project links">
         <a class="pill dark" href="#demos">▶ Listen to demos</a>
         <a class="pill" href="#method">Model details</a>
-        <a class="pill" href="assets/generation-metadata.json" download>↓ Metadata</a>
+        <a class="pill" href="assets/key-chord-generation-summary.json" download>↓ Generation summary</a>
       </nav>
     </div>
   </header>
@@ -28,9 +28,9 @@
       <div class="section-heading">
         <div>
           <p class="eyebrow">SELECTED DEMOS</p>
-          <h2>Generated accompaniments</h2>
+          <h2>REMI sampling results</h2>
         </div>
-        <p class="section-copy">Choose a POP909 melody, then switch between the condition, the generated piano, and both tracks together.</p>
+        <p class="section-copy">Ten held-out POP909 examples generated with temperature 1.2 and top-k 5. Compare the conditions, reference piano, and sampled output.</p>
       </div>
 
       <div id="sample-tabs" class="sample-tabs" role="tablist" aria-label="POP909 samples"></div>
@@ -38,8 +38,8 @@
       <article class="demo-panel">
         <div class="demo-header">
           <div>
-            <p class="sample-kicker" id="sample-kicker">POP909 SAMPLE</p>
-            <h3 id="sample-title">Song 664 · Window 001</h3>
+            <p class="sample-kicker" id="sample-kicker">POP909-CL SAMPLE</p>
+            <h3 id="sample-title">Song 156 · Window 002</h3>
           </div>
           <a id="download-current" class="download-button" href="#" download>↓ Download MIDI</a>
         </div>
@@ -47,9 +47,11 @@
         <div id="stats" class="stats" aria-label="Generation metadata"></div>
 
         <div class="mode-tabs" role="tablist" aria-label="MIDI track view">
-          <button type="button" class="mode-tab" data-mode="condition" role="tab">Given melody</button>
+          <button type="button" class="mode-tab" data-mode="melody" role="tab">Given melody</button>
+          <button type="button" class="mode-tab" data-mode="chords" role="tab">Chord guide</button>
+          <button type="button" class="mode-tab" data-mode="reference" role="tab">Reference piano</button>
           <button type="button" class="mode-tab" data-mode="generated" role="tab">Generated piano</button>
-          <button type="button" class="mode-tab" data-mode="combined" role="tab">Combined</button>
+          <button type="button" class="mode-tab" data-mode="combined" role="tab">Condition + generated</button>
         </div>
 
         <div class="player-card">
@@ -67,28 +69,40 @@
       </article>
     </section>
 
+    <section class="section archive" id="previous-experiment">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PREVIOUS EXPERIMENT</p>
+          <h2>Melody → piano archive</h2>
+        </div>
+        <p class="section-copy">The earlier 16 melody-conditioned samples remain available for comparison. Each link opens the combined condition-and-generation MIDI.</p>
+      </div>
+      <div id="archive-links" class="archive-links" aria-label="Previous melody-conditioned generation files"></div>
+      <p class="archive-meta"><a href="assets/generation-metadata.json">View previous experiment metadata</a></p>
+    </section>
+
     <section class="section method" id="method">
       <div class="section-heading">
         <div>
           <p class="eyebrow">METHOD</p>
-          <h2>Given melody → piano</h2>
+          <h2>Given key + chord + melody → piano</h2>
         </div>
       </div>
       <div class="method-grid">
         <article>
           <span class="step">01</span>
           <h3>Condition</h3>
-          <p>The complete melody condition window is serialized first in REMI+ tokens. No ground-truth piano target is included in the prompt.</p>
+          <p>Each complete window contains the active key, beat-aligned chord progression, and melody. The reference piano is excluded from the prompt.</p>
         </article>
         <article>
           <span class="step">02</span>
           <h3>Generate</h3>
-          <p>The model samples piano events autoregressively using temperature 1.0, top-k 20, and top-p 0.95.</p>
+          <p>The model samples piano events autoregressively with the published REMI-style setup: temperature 1.2 and probability-weighted top-k 5.</p>
         </article>
         <article>
           <span class="step">03</span>
           <h3>Decode</h3>
-          <p>Generated REMI+ events are decoded into a piano MIDI and combined with the original melody for direct listening.</p>
+          <p>Generated REMI+ events are decoded into MIDI, then presented beside the melody, chord guide, and held-out reference for direct comparison.</p>
         </article>
       </div>
     </section>
@@ -97,12 +111,13 @@
       <div>
         <p class="eyebrow">MODEL SNAPSHOT</p>
         <h2>Qwen3-style symbolic music decoder</h2>
-        <p>These samples were generated by the function-preserving depth-expanded model before additional 150M training. All generations reached the 2,048-token context safety ceiling.</p>
+        <p>The model was expanded from the trained melody-to-piano checkpoint, then fully fine-tuned on POP909 + POP909-CL. This page reports raw, unconstrained sampling—including structural failures—instead of hiding them.</p>
       </div>
       <dl>
-        <div><dt>Condition</dt><dd>POP909 melody</dd></div>
+        <div><dt>Condition</dt><dd>Key + chord + melody</dd></div>
         <div><dt>Target</dt><dd>Piano accompaniment</dd></div>
-        <div><dt>Vocabulary</dt><dd>1,727 REMI+ tokens</dd></div>
+        <div><dt>Model</dt><dd>151.96M parameters · 48 layers</dd></div>
+        <div><dt>Vocabulary</dt><dd>1,782 REMI+ tokens</dd></div>
         <div><dt>Context</dt><dd>2,048 tokens</dd></div>
       </dl>
     </section>
