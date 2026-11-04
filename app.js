@@ -245,10 +245,10 @@ async function loadEvaluationData() {
 
 function render() {
   const sample = samples[selectedSample];
-  document.querySelectorAll(".sample-tab").forEach((button, index) => {
+  document.querySelectorAll("#sample-tabs .sample-tab").forEach((button, index) => {
     button.setAttribute("aria-selected", String(index === selectedSample));
   });
-  document.querySelectorAll(".mode-tab").forEach(button => {
+  document.querySelectorAll(".mode-tab[data-mode]").forEach(button => {
     button.setAttribute("aria-selected", String(button.dataset.mode === selectedMode));
   });
   document.querySelector("#sample-kicker").textContent = `POP909-CL · SAMPLE ${String(sample.number).padStart(2,"0")}`;
@@ -281,7 +281,7 @@ function previousMidiPath(sample, mode) {
 
 function renderPrevious() {
   const sample = previousSamples[selectedPreviousSample];
-  document.querySelectorAll(".previous-sample-tab").forEach((button, index) => {
+  document.querySelectorAll("#previous-sample-tabs .previous-sample-tab").forEach((button, index) => {
     button.setAttribute("aria-selected", String(index === selectedPreviousSample));
   });
   document.querySelectorAll(".previous-mode-tab").forEach(button => {
