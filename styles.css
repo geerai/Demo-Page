@@ -62,6 +62,45 @@ midi-visualizer { display: block; width: 100%; min-width: 780px; height: 290px; 
 .generation-note strong { color: #914a31; }
 .generation-note a, .archive-meta a { color: var(--accent); font-weight: 700; }
 
+.evaluation-panel { margin-top: 18px; border: 1px solid #d7dbe6; border-radius: 14px; background: rgba(255,255,255,.78); }
+.evaluation-panel summary { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 17px 18px; cursor: pointer; list-style: none; }
+.evaluation-panel summary::-webkit-details-marker { display: none; }
+.evaluation-panel summary::after { content: "+"; flex: 0 0 auto; display: grid; width: 28px; height: 28px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--accent); background: white; font-size: 1.15rem; font-weight: 500; transition: transform .2s ease; }
+.evaluation-panel[open] summary::after { content: "−"; }
+.evaluation-panel[open] summary { border-bottom: 1px solid var(--line); }
+.evaluation-eyebrow { display: block; margin-bottom: 2px; color: var(--accent); font-size: .64rem; font-weight: 800; letter-spacing: .13em; }
+.evaluation-preview { margin-left: auto; color: var(--muted); font-size: .78rem; font-weight: 650; }
+.evaluation-body { padding: 18px; }
+.evaluation-loading { margin: 0; color: var(--muted); font-size: .86rem; }
+.evaluation-scope, .evaluation-caveat { margin: 0 0 14px; padding: 11px 13px; border-radius: 10px; color: #5c6070; background: #f4f5fa; font-size: .78rem; }
+.evaluation-caveat { color: #785226; background: #fff8e9; }
+.evaluation-scope code, .metric-help code { color: #555f92; }
+.evaluation-status { display: inline-flex; align-items: center; border-radius: 999px; padding: 2px 7px; font-size: .65rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.evaluation-status.warning { margin-right: 6px; color: #765313; background: #fff0c7; }
+.evaluation-status.error { color: #913d32; background: #ffe8e3; }
+.evaluation-status.success { color: #28695b; background: #e1f5ee; }
+.evaluation-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.metric-card { min-width: 0; padding: 17px; border: 1px solid var(--line); border-radius: 12px; background: white; }
+.metric-card h4 { margin: 0 0 13px; font-size: 1rem; }
+.metric-kicker { margin: 0 0 2px; color: var(--accent); font-size: .62rem; font-weight: 800; letter-spacing: .13em; }
+.metric-table { width: 100%; border-collapse: collapse; font-size: .76rem; }
+.metric-table th, .metric-table td { padding: 8px 6px; border-bottom: 1px solid #eceef2; text-align: right; white-space: nowrap; }
+.metric-table th:first-child { padding-left: 0; text-align: left; white-space: normal; }
+.metric-table td:last-child, .metric-table th:last-child { padding-right: 0; }
+.metric-table thead th { color: #868a95; font-size: .62rem; font-weight: 750; letter-spacing: .04em; text-transform: uppercase; }
+.metric-table tbody th { color: #555966; font-weight: 650; }
+.metric-table tbody td { font-variant-numeric: tabular-nums; font-weight: 700; }
+.metric-delta { color: #9a493b; }
+.metric-help { margin: 11px 0 0; color: #858894; font-size: .7rem; line-height: 1.45; }
+.single-metric { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 11px; padding: 9px 10px; border-radius: 8px; color: #646875; background: #f5f6f8; font-size: .75rem; }
+.single-metric strong { color: var(--ink); font-size: .9rem; font-variant-numeric: tabular-nums; }
+.validity-list { font-size: .75rem; }
+.validity-list div { padding: 7px 0; }
+.validity-list dt { color: #646875; }
+.validity-list dd { font-variant-numeric: tabular-nums; }
+.evaluation-links { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 14px; }
+.evaluation-links a { color: var(--accent); font-size: .72rem; font-weight: 750; }
+
 .archive { padding-top: 34px; }
 .previous-demo-panel { background: #f7f5fb; }
 .archive-meta { margin: 14px 0 0; color: var(--muted); font-size: .82rem; }
@@ -89,4 +128,9 @@ footer { margin-top: 20px; padding: 32px 24px; text-align: center; color: var(--
   .demo-panel { padding: 16px; }
   .mode-tabs { overflow-x: auto; }
   .mode-tab { white-space: nowrap; }
+  .evaluation-panel summary { align-items: flex-start; padding: 14px; }
+  .evaluation-preview { display: none; }
+  .evaluation-body { padding: 14px; }
+  .evaluation-grid { grid-template-columns: 1fr; }
+  .metric-card { padding: 14px; }
 }

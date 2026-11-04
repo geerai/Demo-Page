@@ -6,7 +6,7 @@
   <meta name="description" content="POP909 key, chord, and melody-conditioned piano generation demos from a 152M-parameter Qwen3-style symbolic music model.">
   <title>Qwen MIDI — Key + Chord + Melody to Piano</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="styles.css?v=20261015-3">
+  <link rel="stylesheet" href="styles.css?v=20261103-1">
   <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
 </head>
 <body>
@@ -66,6 +66,19 @@
         </div>
 
         <p class="generation-note" id="generation-note"></p>
+
+        <details class="evaluation-panel" id="evaluation-panel">
+          <summary>
+            <span>
+              <span class="evaluation-eyebrow">SAMPLE EVALUATION</span>
+              <strong>View harmony, rhythm, structure &amp; validity</strong>
+            </span>
+            <span class="evaluation-preview" id="evaluation-preview">Loading metrics…</span>
+          </summary>
+          <div class="evaluation-body" id="evaluation-body" aria-live="polite">
+            <p class="evaluation-loading">Loading evaluation data…</p>
+          </div>
+        </details>
       </article>
     </section>
 
@@ -157,6 +170,6 @@
   <footer>
     <p>Research demo · MIDI playback powered by <a href="https://github.com/cifkao/html-midi-player">html-midi-player</a>.</p>
   </footer>
-  <script src="app.js?v=20261015-3"></script>
+  <script src="app.js?v=20261103-1"></script>
 </body>
 </html>

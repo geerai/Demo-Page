@@ -1,0 +1,591 @@
+{
+  "summary": {
+    "sample": "04_pop909-cl_487_window-000",
+    "sample_id": "pop909-cl::487::window-000",
+    "meter": "4_4",
+    "expected_bars": 27,
+    "generated_unique_complete_bars": 14,
+    "paired_common_bars": 14,
+    "unique_complete_bar_ratio": 0.5185185185185185,
+    "paired_bar_ratio": 0.5185185185185185,
+    "generated_complete_occurrences": 17,
+    "duplicate_bar_occurrences": 3,
+    "non_contiguous_bar_transitions": 7,
+    "truncated_bar_occurrences": 1,
+    "invalid_note_positions": 0,
+    "ends_with_complete_bar": false,
+    "grammar_valid": false,
+    "stopping_reason": "context_limit",
+    "generated_tokens": 1213,
+    "reference_overall_ctr": 0.2814814814814815,
+    "generated_overall_ctr": 0.4497816593886463,
+    "overall_ctr_delta": 0.16830017790716478,
+    "reference_first_beat_ctr": 0.11764705882352941,
+    "generated_first_beat_ctr": 0.3142857142857143,
+    "first_beat_ctr_delta": 0.19663865546218487,
+    "reference_notes_per_bar": 14.214285714285714,
+    "generated_notes_per_bar": 20.071428571428573,
+    "reference_mean_ioi": 15.23076923076923,
+    "generated_mean_ioi": 16.930232558139537,
+    "mean_bar_onset_jaccard": 0.5317373103087389,
+    "reference_repetition_rate": 0.9010989010989011,
+    "generated_repetition_rate": 0.8571428571428571,
+    "ssm_correlation": -0.08632586050823307
+  },
+  "alignment_policy": "first complete occurrence of each BAR id; paired by shared BAR id",
+  "paired_bar_ids": [
+    0,
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    11,
+    12,
+    15,
+    16,
+    18
+  ],
+  "generation_report": {
+    "sample_id": "pop909-cl::487::window-000",
+    "method": "remi_temperature_topk_sampling",
+    "seed": 20261019,
+    "temperature": 1.2,
+    "top_k": 5,
+    "top_p": 1.0,
+    "prompt_tokens": 835,
+    "generated_tokens": 1213,
+    "context_length": 2048,
+    "expected_bars": 27,
+    "generated_bars_detected": 15,
+    "reference_bars_detected": 27,
+    "generated_note_count": 381,
+    "reference_note_count": 361,
+    "melody_note_count": 110,
+    "grammar_valid": false,
+    "grammar_errors": [
+      "target bar sequence is not relative/contiguous: 3"
+    ],
+    "reference_parse_errors": [],
+    "stopping_reason": "context_limit"
+  },
+  "validity": {
+    "bar_ids_in_emission_order": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      8,
+      9,
+      8,
+      11,
+      12,
+      15,
+      16,
+      15,
+      18,
+      19
+    ],
+    "duplicate_bar_ids": [
+      8,
+      8,
+      15
+    ]
+  },
+  "harmony": {
+    "reference": {
+      "overall_ctr": 0.2814814814814815,
+      "overall_hits": 38,
+      "overall_evaluable_notes": 135,
+      "first_beat_ctr": 0.11764705882352941,
+      "first_beat_hits": 2,
+      "first_beat_evaluable_notes": 17,
+      "per_bar": [
+        {
+          "bar_id": 0,
+          "hits": 0,
+          "evaluable_notes": 0,
+          "overall_ctr": null,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 0,
+          "first_beat_ctr": null
+        },
+        {
+          "bar_id": 1,
+          "hits": 0,
+          "evaluable_notes": 0,
+          "overall_ctr": null,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 0,
+          "first_beat_ctr": null
+        },
+        {
+          "bar_id": 3,
+          "hits": 0,
+          "evaluable_notes": 0,
+          "overall_ctr": null,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 0,
+          "first_beat_ctr": null
+        },
+        {
+          "bar_id": 4,
+          "hits": 0,
+          "evaluable_notes": 3,
+          "overall_ctr": 0.0,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 0,
+          "first_beat_ctr": null
+        },
+        {
+          "bar_id": 5,
+          "hits": 0,
+          "evaluable_notes": 16,
+          "overall_ctr": 0.0,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 1,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 6,
+          "hits": 5,
+          "evaluable_notes": 16,
+          "overall_ctr": 0.3125,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 1,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 7,
+          "hits": 3,
+          "evaluable_notes": 18,
+          "overall_ctr": 0.16666666666666666,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 1,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 8,
+          "hits": 4,
+          "evaluable_notes": 8,
+          "overall_ctr": 0.5,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 0,
+          "first_beat_ctr": null
+        },
+        {
+          "bar_id": 9,
+          "hits": 0,
+          "evaluable_notes": 11,
+          "overall_ctr": 0.0,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 3,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 11,
+          "hits": 4,
+          "evaluable_notes": 14,
+          "overall_ctr": 0.2857142857142857,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 3,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 12,
+          "hits": 5,
+          "evaluable_notes": 11,
+          "overall_ctr": 0.45454545454545453,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 1,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 15,
+          "hits": 4,
+          "evaluable_notes": 13,
+          "overall_ctr": 0.3076923076923077,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 3,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 16,
+          "hits": 5,
+          "evaluable_notes": 12,
+          "overall_ctr": 0.4166666666666667,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 1,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 18,
+          "hits": 8,
+          "evaluable_notes": 13,
+          "overall_ctr": 0.6153846153846154,
+          "first_beat_hits": 2,
+          "first_beat_evaluable_notes": 3,
+          "first_beat_ctr": 0.6666666666666666
+        }
+      ]
+    },
+    "generated": {
+      "overall_ctr": 0.4497816593886463,
+      "overall_hits": 103,
+      "overall_evaluable_notes": 229,
+      "first_beat_ctr": 0.3142857142857143,
+      "first_beat_hits": 11,
+      "first_beat_evaluable_notes": 35,
+      "per_bar": [
+        {
+          "bar_id": 0,
+          "hits": 0,
+          "evaluable_notes": 0,
+          "overall_ctr": null,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 0,
+          "first_beat_ctr": null
+        },
+        {
+          "bar_id": 1,
+          "hits": 0,
+          "evaluable_notes": 0,
+          "overall_ctr": null,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 0,
+          "first_beat_ctr": null
+        },
+        {
+          "bar_id": 3,
+          "hits": 0,
+          "evaluable_notes": 0,
+          "overall_ctr": null,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 0,
+          "first_beat_ctr": null
+        },
+        {
+          "bar_id": 4,
+          "hits": 0,
+          "evaluable_notes": 1,
+          "overall_ctr": 0.0,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 0,
+          "first_beat_ctr": null
+        },
+        {
+          "bar_id": 5,
+          "hits": 5,
+          "evaluable_notes": 19,
+          "overall_ctr": 0.2631578947368421,
+          "first_beat_hits": 1,
+          "first_beat_evaluable_notes": 3,
+          "first_beat_ctr": 0.3333333333333333
+        },
+        {
+          "bar_id": 6,
+          "hits": 7,
+          "evaluable_notes": 20,
+          "overall_ctr": 0.35,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 3,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 7,
+          "hits": 13,
+          "evaluable_notes": 22,
+          "overall_ctr": 0.5909090909090909,
+          "first_beat_hits": 4,
+          "first_beat_evaluable_notes": 4,
+          "first_beat_ctr": 1.0
+        },
+        {
+          "bar_id": 8,
+          "hits": 7,
+          "evaluable_notes": 18,
+          "overall_ctr": 0.3888888888888889,
+          "first_beat_hits": 2,
+          "first_beat_evaluable_notes": 4,
+          "first_beat_ctr": 0.5
+        },
+        {
+          "bar_id": 9,
+          "hits": 14,
+          "evaluable_notes": 29,
+          "overall_ctr": 0.4827586206896552,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 5,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 11,
+          "hits": 12,
+          "evaluable_notes": 25,
+          "overall_ctr": 0.48,
+          "first_beat_hits": 1,
+          "first_beat_evaluable_notes": 3,
+          "first_beat_ctr": 0.3333333333333333
+        },
+        {
+          "bar_id": 12,
+          "hits": 8,
+          "evaluable_notes": 25,
+          "overall_ctr": 0.32,
+          "first_beat_hits": 3,
+          "first_beat_evaluable_notes": 4,
+          "first_beat_ctr": 0.75
+        },
+        {
+          "bar_id": 15,
+          "hits": 13,
+          "evaluable_notes": 24,
+          "overall_ctr": 0.5416666666666666,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 3,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 16,
+          "hits": 13,
+          "evaluable_notes": 23,
+          "overall_ctr": 0.5652173913043478,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 3,
+          "first_beat_ctr": 0.0
+        },
+        {
+          "bar_id": 18,
+          "hits": 11,
+          "evaluable_notes": 23,
+          "overall_ctr": 0.4782608695652174,
+          "first_beat_hits": 0,
+          "first_beat_evaluable_notes": 3,
+          "first_beat_ctr": 0.0
+        }
+      ]
+    }
+  },
+  "rhythm": {
+    "reference": {
+      "notes_per_bar_mean": 14.214285714285714,
+      "notes_per_bar_median": 15.0,
+      "unique_onset_ioi_mean": 15.23076923076923,
+      "unique_onset_ioi_median": 12.0,
+      "duration_histogram": {
+        "13-24": 66,
+        "25-48": 58,
+        "49-96": 48,
+        "<=12": 27
+      },
+      "onset_position_histogram": {
+        "0": 23,
+        "12": 9,
+        "24": 13,
+        "36": 10,
+        "48": 14,
+        "60": 7,
+        "72": 16,
+        "84": 7,
+        "96": 23,
+        "108": 7,
+        "120": 11,
+        "132": 12,
+        "144": 19,
+        "156": 7,
+        "168": 13,
+        "180": 8
+      },
+      "bar_rhythm_pattern_repetition_rate": 0.5714285714285714,
+      "note_counts_per_bar": {
+        "0": 17,
+        "1": 18,
+        "3": 16,
+        "4": 16,
+        "5": 16,
+        "6": 16,
+        "7": 18,
+        "8": 8,
+        "9": 11,
+        "11": 14,
+        "12": 11,
+        "15": 13,
+        "16": 12,
+        "18": 13
+      }
+    },
+    "generated": {
+      "notes_per_bar_mean": 20.071428571428573,
+      "notes_per_bar_median": 21.0,
+      "unique_onset_ioi_mean": 16.930232558139537,
+      "unique_onset_ioi_median": 12,
+      "duration_histogram": {
+        "49-96": 35,
+        "25-48": 73,
+        "13-24": 111,
+        "<=12": 62
+      },
+      "onset_position_histogram": {
+        "0": 47,
+        "12": 5,
+        "24": 14,
+        "36": 15,
+        "48": 31,
+        "60": 11,
+        "72": 20,
+        "84": 1,
+        "95": 1,
+        "96": 42,
+        "108": 4,
+        "120": 13,
+        "132": 22,
+        "144": 21,
+        "156": 18,
+        "168": 15,
+        "180": 1
+      },
+      "bar_rhythm_pattern_repetition_rate": 0.35714285714285715,
+      "note_counts_per_bar": {
+        "0": 0,
+        "1": 18,
+        "3": 19,
+        "4": 16,
+        "5": 19,
+        "6": 20,
+        "7": 22,
+        "8": 18,
+        "9": 29,
+        "11": 25,
+        "12": 25,
+        "15": 24,
+        "16": 23,
+        "18": 23
+      }
+    }
+  },
+  "structure": {
+    "reference": {
+      "repetition_rate_at_0_8": 0.9010989010989011,
+      "mean_off_diagonal_similarity": 0.8862204161829066,
+      "lag_similarity": [
+        {
+          "lag_bars": 1,
+          "mean_similarity": 0.8828049776884082
+        },
+        {
+          "lag_bars": 2,
+          "mean_similarity": 0.8977446823781725
+        },
+        {
+          "lag_bars": 3,
+          "mean_similarity": 0.8914315676256396
+        },
+        {
+          "lag_bars": 4,
+          "mean_similarity": 0.8662198636641585
+        },
+        {
+          "lag_bars": 5,
+          "mean_similarity": 0.8908568970232643
+        },
+        {
+          "lag_bars": 6,
+          "mean_similarity": 0.8496846448117479
+        },
+        {
+          "lag_bars": 7,
+          "mean_similarity": 0.8948441966563072
+        },
+        {
+          "lag_bars": 8,
+          "mean_similarity": 0.8876497441612503
+        },
+        {
+          "lag_bars": 9,
+          "mean_similarity": 0.8997907373963282
+        },
+        {
+          "lag_bars": 10,
+          "mean_similarity": 0.9036135604652118
+        },
+        {
+          "lag_bars": 11,
+          "mean_similarity": 0.8895605130047075
+        },
+        {
+          "lag_bars": 12,
+          "mean_similarity": 0.9138425047128362
+        },
+        {
+          "lag_bars": 13,
+          "mean_similarity": 0.9139395430862097
+        }
+      ]
+    },
+    "generated": {
+      "repetition_rate_at_0_8": 0.8571428571428571,
+      "mean_off_diagonal_similarity": 0.7789891143825157,
+      "lag_similarity": [
+        {
+          "lag_bars": 1,
+          "mean_similarity": 0.8524470931455564
+        },
+        {
+          "lag_bars": 2,
+          "mean_similarity": 0.8370230607823785
+        },
+        {
+          "lag_bars": 3,
+          "mean_similarity": 0.8368764086770635
+        },
+        {
+          "lag_bars": 4,
+          "mean_similarity": 0.8249064377411264
+        },
+        {
+          "lag_bars": 5,
+          "mean_similarity": 0.7916921251871694
+        },
+        {
+          "lag_bars": 6,
+          "mean_similarity": 0.7853430010476975
+        },
+        {
+          "lag_bars": 7,
+          "mean_similarity": 0.7688815669950148
+        },
+        {
+          "lag_bars": 8,
+          "mean_similarity": 0.7618958518843026
+        },
+        {
+          "lag_bars": 9,
+          "mean_similarity": 0.705326092841642
+        },
+        {
+          "lag_bars": 10,
+          "mean_similarity": 0.6748936570306424
+        },
+        {
+          "lag_bars": 11,
+          "mean_similarity": 0.6025431792641839
+        },
+        {
+          "lag_bars": 12,
+          "mean_similarity": 0.4559308751044177
+        },
+        {
+          "lag_bars": 13,
+          "mean_similarity": 0.0
+        }
+      ]
+    }
+  }
+}
