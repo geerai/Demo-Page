@@ -6,7 +6,7 @@
   <meta name="description" content="POP909 key, chord, and melody-conditioned piano generation demos from a 152M-parameter Qwen3-style symbolic music model.">
   <title>Qwen MIDI — Key + Chord + Melody to Piano</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="styles.css?v=20261103-1">
+  <link rel="stylesheet" href="styles.css?v=20261110-1">
   <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
       <nav class="hero-actions" aria-label="Project links">
         <a class="pill dark" href="#demos">▶ Listen to demos</a>
         <a class="pill" href="#method">Model details</a>
-        <a class="pill" href="assets/key-chord-generation-summary.json" download>↓ Generation summary</a>
+        <a class="pill" href="assets/midi-key-chord-step2000/generation-summary.json" download>↓ Step-2000 summary</a>
       </nav>
     </div>
   </header>
@@ -30,8 +30,21 @@
           <p class="eyebrow">SELECTED DEMOS</p>
           <h2>REMI sampling results</h2>
         </div>
-        <p class="section-copy">Ten held-out POP909 examples generated with temperature 1.2 and top-k 5. Compare the conditions, reference piano, and sampled output.</p>
+        <p class="section-copy">The same ten held-out POP909 prompts sampled from the original checkpoint and the 2,000-step continuation. Switch versions for a controlled comparison.</p>
       </div>
+
+      <div class="run-switch" role="tablist" aria-label="Training checkpoint">
+        <button class="run-tab" type="button" data-run="step2000" role="tab">Step 2000</button>
+        <button class="run-tab" type="button" data-run="baseline" role="tab">V1 baseline</button>
+      </div>
+
+      <div class="training-comparison" aria-label="Training comparison summary">
+        <div><span>Mean bar completion</span><strong>68.1% → 81.4%</strong><small>+13.3 percentage points</small></div>
+        <div><span>Bar-sequence errors</span><strong>9 → 1</strong><small>Global ordering improved</small></div>
+        <div><span>Total grammar errors</span><strong>22 → 21</strong><small>Almost unchanged</small></div>
+        <div><span>Strict grammar valid</span><strong>0/10 → 0/10</strong><small>No fully valid output yet</small></div>
+      </div>
+      <p class="comparison-note">Step 2000 improves bar-level completion, but introduces more note-level syntax errors. It is a mixed result, not a general quality win. <a href="assets/grammar-comparison-step2000.json">View comparison JSON</a></p>
 
       <div id="sample-tabs" class="sample-tabs" role="tablist" aria-label="POP909 samples"></div>
 
@@ -170,6 +183,6 @@
   <footer>
     <p>Research demo · MIDI playback powered by <a href="https://github.com/cifkao/html-midi-player">html-midi-player</a>.</p>
   </footer>
-  <script src="app.js?v=20261103-2"></script>
+  <script src="app.js?v=20261110-1"></script>
 </body>
 </html>

@@ -1,16 +1,17 @@
 # Qwen MIDI GitHub Pages showcase
 
-A static research-demo website for 10 POP909/POP909-CL key-, chord-, and
-melody-conditioned piano samples. The previous 16 melody-conditioned samples
-remain linked as a comparison archive.
+A static research-demo website comparing the same 10 POP909/POP909-CL key-,
+chord-, and melody-conditioned piano prompts at the V1 checkpoint and after a
+2,000-step continuation. The previous 16 melody-conditioned samples remain
+linked as a separate archive.
 It follows the selected-demo interaction pattern of `taste-piano.github.io`:
 sample chips, metadata tags, a MIDI player, downloadable files, and a wide
 piano-roll visualization.
 
-The current REMI sampling results are shown without filtering: all 10 MIDI
-outputs are playable, while their reports identify incomplete generated
-structures (primarily because generation reached the 2,048-token context
-limit). This is surfaced directly in the interface.
+Both REMI sampling runs are shown without filtering. The Step-2000 run improves
+mean bar completion from 68.1% to 81.4% and reduces bar-sequence errors from 9
+to 1, but neither run has a strictly grammar-valid sample. The interface makes
+this mixed result explicit and exposes raw generation and comparison reports.
 
 ## Preview locally
 

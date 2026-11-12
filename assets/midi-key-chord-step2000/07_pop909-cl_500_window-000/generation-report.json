@@ -1,0 +1,25 @@
+{
+  "sample_id": "pop909-cl::500::window-000",
+  "method": "remi_temperature_topk_sampling",
+  "seed": 20261022,
+  "temperature": 1.2,
+  "top_k": 5,
+  "top_p": 1.0,
+  "prompt_tokens": 815,
+  "generated_tokens": 1233,
+  "context_length": 2048,
+  "expected_bars": 32,
+  "generated_bars_detected": 24,
+  "reference_bars_detected": 32,
+  "generated_note_count": 378,
+  "reference_note_count": 362,
+  "melody_note_count": 112,
+  "grammar_valid": false,
+  "grammar_errors": [
+    "invalid note triple at token 183: ['<POSITION_096>', '<PITCH_049>', '<PITCH_063>']",
+    "orphan/truncated position at token 1232",
+    "invalid PIANO duration token: <PITCH_063>"
+  ],
+  "reference_parse_errors": [],
+  "stopping_reason": "context_limit"
+}

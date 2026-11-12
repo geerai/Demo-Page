@@ -1,0 +1,23 @@
+{
+  "sample_id": "pop909-cl::300::window-002",
+  "method": "remi_temperature_topk_sampling",
+  "seed": 20261021,
+  "temperature": 1.2,
+  "top_k": 5,
+  "top_p": 1.0,
+  "prompt_tokens": 855,
+  "generated_tokens": 1193,
+  "context_length": 2048,
+  "expected_bars": 21,
+  "generated_bars_detected": 18,
+  "reference_bars_detected": 21,
+  "generated_note_count": 373,
+  "reference_note_count": 349,
+  "melody_note_count": 163,
+  "grammar_valid": false,
+  "grammar_errors": [
+    "PIANO positions are not sorted"
+  ],
+  "reference_parse_errors": [],
+  "stopping_reason": "context_limit"
+}

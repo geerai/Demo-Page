@@ -36,6 +36,16 @@ h2 { margin: 0; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; letter-spa
 .section-copy { max-width: 470px; margin: 0; color: var(--muted); }
 
 .sample-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.run-switch { display: inline-flex; gap: 5px; margin-bottom: 16px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--wash); }
+.run-tab { cursor: pointer; border: 0; border-radius: 999px; padding: 9px 16px; color: var(--muted); background: transparent; font: inherit; font-size: .84rem; font-weight: 750; }
+.run-tab[aria-selected="true"] { color: white; background: var(--ink); }
+.training-comparison { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0 0 12px; }
+.training-comparison div { display: flex; min-width: 0; flex-direction: column; padding: 15px; border: 1px solid var(--line); border-radius: 12px; background: #fafbfc; }
+.training-comparison span { color: var(--muted); font-size: .7rem; font-weight: 700; }
+.training-comparison strong { margin: 4px 0 2px; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.training-comparison small { color: #888c96; font-size: .66rem; }
+.comparison-note { margin: 0 0 20px; color: var(--muted); font-size: .78rem; }
+.comparison-note a { color: var(--accent); font-weight: 750; }
 .sample-tab, .mode-tab { cursor: pointer; border: 1px solid var(--line); border-radius: 999px; background: white; padding: 8px 13px; color: #50525a; font: inherit; font-size: .86rem; transition: .2s ease; }
 .sample-tab::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 7px; border-radius: 50%; background: var(--dot, var(--accent)); }
 .sample-tab:hover, .mode-tab:hover { border-color: #aeb3bf; }
@@ -133,4 +143,9 @@ footer { margin-top: 20px; padding: 32px 24px; text-align: center; color: var(--
   .evaluation-body { padding: 14px; }
   .evaluation-grid { grid-template-columns: 1fr; }
   .metric-card { padding: 14px; }
+  .training-comparison { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 460px) {
+  .training-comparison { grid-template-columns: 1fr; }
 }

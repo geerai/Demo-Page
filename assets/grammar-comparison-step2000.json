@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "baseline_dir": "/zelda/geerai/qwen-midi/runs/pop909-key-chord-melody-to-piano-150m-v1/remi-sampling-10-baseline-recreated",
+  "candidate_dir": "/zelda/geerai/qwen-midi/runs/pop909-key-chord-melody-to-piano-150m-v2-long/remi-sampling-10-step2000",
+  "pairing": "identical sample_id required",
+  "sample_count": 10,
+  "baseline": {
+    "samples": 10,
+    "grammar_valid_count": 0,
+    "grammar_valid_rate": 0.0,
+    "total_grammar_errors": 22,
+    "mean_grammar_errors_per_sample": 2.2,
+    "median_grammar_errors_per_sample": 2.0,
+    "error_category_totals": {
+      "invalid_note_triple": 1,
+      "orphan_or_truncated_position": 11,
+      "invalid_duration_token": 0,
+      "position_outside_bar": 0,
+      "bar_sequence": 9,
+      "positions_not_sorted": 0,
+      "unexpected_target_token": 1,
+      "other": 0
+    },
+    "mean_bar_completion_ratio": 0.6810039577280956,
+    "median_bar_completion_ratio": 0.6875,
+    "full_bar_count_reached": 0,
+    "complete_non_context_limit": 0,
+    "stopping_reasons": {
+      "context_limit": 8,
+      "expected_bar_count": 2
+    },
+    "samples_with_reference_errors": 0
+  },
+  "candidate": {
+    "samples": 10,
+    "grammar_valid_count": 0,
+    "grammar_valid_rate": 0.0,
+    "total_grammar_errors": 21,
+    "mean_grammar_errors_per_sample": 2.1,
+    "median_grammar_errors_per_sample": 2.0,
+    "error_category_totals": {
+      "invalid_note_triple": 6,
+      "orphan_or_truncated_position": 5,
+      "invalid_duration_token": 3,
+      "position_outside_bar": 0,
+      "bar_sequence": 1,
+      "positions_not_sorted": 3,
+      "unexpected_target_token": 0,
+      "other": 3
+    },
+    "mean_bar_completion_ratio": 0.813972130997993,
+    "median_bar_completion_ratio": 0.8366402116402116,
+    "full_bar_count_reached": 2,
+    "complete_non_context_limit": 1,
+    "stopping_reasons": {
+      "context_limit": 7,
+      "arrangement_end": 1,
+      "expected_bar_count": 2
+    },
+    "samples_with_reference_errors": 0
+  },
+  "paired_change": {
+    "became_valid": 0,
+    "became_invalid": 0,
+    "fewer_errors": 2,
+    "same_errors": 3,
+    "more_errors": 5,
+    "higher_completion": 7,
+    "same_completion": 1,
+    "lower_completion": 2
+  }
+}

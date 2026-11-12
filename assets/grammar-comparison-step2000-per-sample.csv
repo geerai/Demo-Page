@@ -1,0 +1,11 @@
+sample_id,baseline_valid,candidate_valid,baseline_errors,candidate_errors,error_delta_candidate_minus_baseline,baseline_completion_ratio,candidate_completion_ratio,completion_delta_candidate_minus_baseline,baseline_stop,candidate_stop,baseline_invalid_note_triple,candidate_invalid_note_triple,baseline_orphan_or_truncated_position,candidate_orphan_or_truncated_position,baseline_invalid_duration_token,candidate_invalid_duration_token,baseline_position_outside_bar,candidate_position_outside_bar,baseline_bar_sequence,candidate_bar_sequence,baseline_positions_not_sorted,candidate_positions_not_sorted,baseline_unexpected_target_token,candidate_unexpected_target_token,baseline_other,candidate_other
+pop909-cl::126::window-002,False,False,2,2,0,0.7586206896551724,0.7586206896551724,0.0,context_limit,context_limit,0,0,1,1,0,0,0,0,1,0,0,1,0,0,0,0
+pop909-cl::156::window-002,False,False,1,3,2,0.75,0.6071428571428571,-0.1428571428571429,context_limit,context_limit,0,1,0,1,0,0,0,0,1,1,0,0,0,0,0,0
+pop909-cl::196::window-001,False,False,2,2,0,0.75,0.8214285714285714,0.0714285714285714,context_limit,arrangement_end,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,0
+pop909-cl::300::window-002,False,False,8,1,-7,0.8095238095238095,0.8571428571428571,0.04761904761904756,expected_bar_count,context_limit,0,0,7,0,0,0,0,0,0,0,0,1,1,0,0,0
+pop909-cl::487::window-000,False,False,1,2,1,0.5555555555555556,0.8518518518518519,0.2962962962962963,context_limit,context_limit,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1
+pop909-cl::500::window-000,False,False,2,3,1,0.53125,0.75,0.21875,context_limit,context_limit,0,1,1,1,0,1,0,0,1,0,0,0,0,0,0,0
+pop909-cl::664::window-002,False,False,1,1,0,0.59375,0.5625,-0.03125,context_limit,context_limit,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1
+pop909-cl::704::window-003,False,False,2,3,1,0.5517241379310345,0.9310344827586207,0.3793103448275862,context_limit,expected_bar_count,1,2,0,0,0,0,0,0,1,0,0,0,0,0,0,1
+pop909-cl::745::window-002,False,False,2,1,-1,0.625,1.0,0.375,context_limit,expected_bar_count,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0
+pop909-cl::763::window-001,False,False,1,3,2,0.8846153846153846,1.0,0.11538461538461542,expected_bar_count,context_limit,0,1,0,1,0,1,0,0,1,0,0,0,0,0,0,0

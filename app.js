@@ -1,4 +1,4 @@
-const samples = [
+const baselineSamples = [
   [1,"156","002",20261016,120,28,21,127,373,355,41,80,835,1213,"context limit"],
   [2,"745","002",20261017,100,32,20,109,405,313,38,74,737,1311,"context limit"],
   [3,"664","002",20261018,134,32,19,161,335,315,37,68,961,1087,"context limit"],
@@ -14,6 +14,37 @@ const samples = [
   referenceNotes,pitchMin,pitchMax,promptTokens,generatedTokens,stop,
   folder: `${String(number).padStart(2,"0")}_pop909-cl_${song}_window-${window}`
 }));
+
+const step2000Results = [
+  [17,373,1213,3,"context limit"],
+  [32,312,1064,1,"bar-count stop"],
+  [18,339,1087,1,"context limit"],
+  [23,374,1213,2,"context limit"],
+  [27,200,722,3,"bar-count stop"],
+  [18,373,1193,1,"context limit"],
+  [24,378,1233,3,"context limit"],
+  [23,208,719,2,"arrangement end"],
+  [22,358,1161,2,"context limit"],
+  [26,397,1298,3,"context limit"]
+];
+const step2000Samples = baselineSamples.map((sample, index) => {
+  const [generatedBars, pianoNotes, generatedTokens, grammarErrors, stop] = step2000Results[index];
+  return {...sample, generatedBars, pianoNotes, generatedTokens, grammarErrors, stop, grammarValid: false};
+});
+const runs = {
+  step2000: {
+    label: "STEP 2000",
+    assetRoot: "assets/midi-key-chord-step2000",
+    samples: step2000Samples
+  },
+  baseline: {
+    label: "V1 BASELINE",
+    assetRoot: "assets/midi-key-chord",
+    samples: baselineSamples
+  }
+};
+let selectedRun = "step2000";
+let samples = runs[selectedRun].samples;
 
 const colors = ["#5aa89f","#d4a53c","#8a63b8","#55a69f","#5276a9","#c36b55"];
 const previousSamples = [
@@ -51,10 +82,19 @@ let selectedPreviousSample = 0;
 let selectedPreviousMode = "combined";
 let evaluationBySample = new Map();
 let evaluationLoadError = false;
+let grammarComparison = null;
 
 const tabHost = document.querySelector("#sample-tabs");
 const player = document.querySelector("#midi-player");
 const visualizer = document.querySelector("#midi-visualizer");
+
+document.querySelectorAll(".run-tab").forEach(button => {
+  button.addEventListener("click", () => {
+    selectedRun = button.dataset.run;
+    samples = runs[selectedRun].samples;
+    render();
+  });
+});
 
 samples.forEach((sample, index) => {
   const button = document.createElement("button");
@@ -90,7 +130,7 @@ document.querySelectorAll(".previous-mode-tab").forEach(button => {
 });
 
 function midiPath(sample, mode) {
-  return `assets/midi-key-chord/${sample.folder}/${modeFiles[mode][1]}`;
+  return `${runs[selectedRun].assetRoot}/${sample.folder}/${modeFiles[mode][1]}`;
 }
 
 function stat(label, value, warning = false) {
@@ -138,6 +178,49 @@ function renderEvaluation() {
   const sample = samples[selectedSample];
   const preview = document.querySelector("#evaluation-preview");
   const body = document.querySelector("#evaluation-body");
+
+  if (selectedRun === "step2000") {
+    if (!grammarComparison) {
+      preview.textContent = evaluationLoadError ? "Comparison unavailable" : "Loading comparison…";
+      body.innerHTML = `<p class="evaluation-loading">Loading step-2000 comparison…</p>`;
+      return;
+    }
+    const baseline = grammarComparison.baseline;
+    const candidate = grammarComparison.candidate;
+    preview.textContent = `${sample.generatedBars}/${sample.expectedBars} bars · ${sample.grammarErrors} grammar errors`;
+    body.innerHTML = `
+      <div class="evaluation-scope"><span class="evaluation-status warning">Mixed result</span>
+        Longer training improved bar completion, but no sample passed strict grammar validation.</div>
+      <div class="evaluation-grid">
+        <section class="metric-card">
+          <p class="metric-kicker">PAIRED RUN</p><h4>V1 → Step 2000</h4>
+          <dl class="validity-list">
+            <div><dt>Mean bar completion</dt><dd>${percent(baseline.mean_bar_completion_ratio)} → ${percent(candidate.mean_bar_completion_ratio)}</dd></div>
+            <div><dt>Total grammar errors</dt><dd>${baseline.total_grammar_errors} → ${candidate.total_grammar_errors}</dd></div>
+            <div><dt>Strict valid samples</dt><dd>${baseline.grammar_valid_count}/10 → ${candidate.grammar_valid_count}/10</dd></div>
+            <div><dt>Context-limit stops</dt><dd>${baseline.stopping_reasons.context_limit} → ${candidate.stopping_reasons.context_limit}</dd></div>
+          </dl>
+        </section>
+        <section class="metric-card validity-card">
+          <p class="metric-kicker">THIS SAMPLE</p><h4>Generation integrity</h4>
+          <dl class="validity-list">
+            <div><dt>Detected bars</dt><dd>${sample.generatedBars}/${sample.expectedBars}</dd></div>
+            <div><dt>Grammar</dt><dd><span class="evaluation-status error">Invalid</span></dd></div>
+            <div><dt>Grammar errors</dt><dd>${sample.grammarErrors}</dd></div>
+            <div><dt>Stop reason</dt><dd>${sample.stop}</dd></div>
+            <div><dt>Generated notes</dt><dd>${sample.pianoNotes}</dd></div>
+            <div><dt>Generated tokens</dt><dd>${sample.generatedTokens}</dd></div>
+          </dl>
+        </section>
+      </div>
+      <div class="evaluation-links">
+        <a href="assets/grammar-comparison-step2000.json">Aggregate comparison JSON</a>
+        <a href="assets/grammar-comparison-step2000-per-sample.csv">Per-sample comparison CSV</a>
+        <a href="${runs[selectedRun].assetRoot}/${sample.folder}/generation-report.json">Raw generation report</a>
+        <a href="${runs[selectedRun].assetRoot}/${sample.folder}/generated-tokens.txt">Generated tokens</a>
+      </div>`;
+    return;
+  }
   const row = evaluationBySample.get(sample.folder);
 
   if (!row) {
@@ -233,9 +316,13 @@ function renderEvaluation() {
 
 async function loadEvaluationData() {
   try {
-    const response = await fetch("assets/evaluation/evaluation-summary.csv");
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    evaluationBySample = new Map(parseSimpleCsv(await response.text()).map(row => [row.sample, row]));
+    const [evaluationResponse, grammarResponse] = await Promise.all([
+      fetch("assets/evaluation/evaluation-summary.csv"),
+      fetch("assets/grammar-comparison-step2000.json")
+    ]);
+    if (!evaluationResponse.ok || !grammarResponse.ok) throw new Error("Metric files unavailable");
+    evaluationBySample = new Map(parseSimpleCsv(await evaluationResponse.text()).map(row => [row.sample, row]));
+    grammarComparison = await grammarResponse.json();
   } catch (error) {
     console.error("Could not load evaluation data", error);
     evaluationLoadError = true;
@@ -245,20 +332,26 @@ async function loadEvaluationData() {
 
 function render() {
   const sample = samples[selectedSample];
+  document.querySelectorAll(".run-tab").forEach(button => {
+    button.setAttribute("aria-selected", String(button.dataset.run === selectedRun));
+  });
   document.querySelectorAll("#sample-tabs .sample-tab").forEach((button, index) => {
     button.setAttribute("aria-selected", String(index === selectedSample));
   });
   document.querySelectorAll(".mode-tab[data-mode]").forEach(button => {
     button.setAttribute("aria-selected", String(button.dataset.mode === selectedMode));
   });
-  document.querySelector("#sample-kicker").textContent = `POP909-CL · SAMPLE ${String(sample.number).padStart(2,"0")}`;
+  document.querySelector("#sample-kicker").textContent = `${runs[selectedRun].label} · POP909-CL SAMPLE ${String(sample.number).padStart(2,"0")}`;
   document.querySelector("#sample-title").textContent = `Song ${sample.song} · Window ${sample.window}`;
   document.querySelector("#stats").innerHTML = [
     stat("TEMPO", `${sample.tempo} BPM`), stat("METER", "4/4"),
     stat("MELODY", `${sample.expectedBars} bars · ${sample.melodyNotes} notes`),
     stat("GENERATED", `${sample.generatedBars}/${sample.expectedBars} bars · ${sample.pianoNotes} notes`, true),
     stat("REFERENCE", `${sample.referenceNotes} notes`), stat("PITCH", `${sample.pitchMin}–${sample.pitchMax}`),
-    stat("SEED", sample.seed), stat("RAW STRUCTURE", "incomplete", true)
+    stat("SEED", sample.seed),
+    selectedRun === "step2000"
+      ? stat("GRAMMAR", `${sample.grammarErrors} errors`, true)
+      : stat("RAW STRUCTURE", "incomplete", true)
   ].join("");
   const path = midiPath(sample, selectedMode);
   player.src = path;
@@ -269,8 +362,8 @@ function render() {
   download.download = `${sample.folder}-${modeFiles[selectedMode][1]}`;
   document.querySelector("#generation-note").innerHTML =
     `Prompt ${sample.promptTokens} tokens · Generated ${sample.generatedTokens} tokens · ` +
-    `<strong>Unconstrained REMI sampling produced ${sample.generatedBars}/${sample.expectedBars} parseable bars (${sample.stop}).</strong> ` +
-    `<a href="assets/midi-key-chord/${sample.folder}/generation-report.json">View raw report</a>`;
+    `<strong>Unconstrained REMI sampling produced ${sample.generatedBars}/${sample.expectedBars} detected bars (${sample.stop}).</strong> ` +
+    `<a href="${runs[selectedRun].assetRoot}/${sample.folder}/generation-report.json">View raw report</a>`;
   renderEvaluation();
 }
 
